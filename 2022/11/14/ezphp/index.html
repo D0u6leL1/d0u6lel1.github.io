@@ -141,7 +141,7 @@
             <span class="tag">
                 
                 <a href="/tags/wp-web/" style="color: #ff7d73">
-                    wp-web
+                    wp-webbbbb
                 </a>
             </span>
             
@@ -150,35 +150,24 @@
     </div>
     <div class="content" v-pre>
         <pre><code class="moectf">$ 变量覆盖：ezphp
-西电新生赛Moectf里面web方向的ezphp
-
-
+西电新生赛Moectf里面web方向的ezphp66666666
 有点小提示（火力覆盖--覆盖）--考虑 web变量覆盖
 打开页面 看到源码
-
-
 四行语句，执行完毕才可出flag
-
-
 发送GET或者POST请求，要求请求名（key）为flag否则返回$giveme
-
 
 第二行要求值不等于flag否则返回$getout
 三四行对超级全局变量POST GET进行遍历赋值，我们发现输出的flag被自己提交的POST/GET请求覆盖，导致输出的是自己输出的值，无法得到flag
 ps：键和值的概念参考其他文章（(4条消息) php extract 变量覆盖,变量 覆盖漏洞----$$_Duke Yu的博客-CSDN博客）
 
-
 首先想到更改一下getout值，让其在第二个函数报错带出flag
 用bp抓个包
 
-
 发现$flag不会执行，当成字符串运行
-
 
 刚才变量代替方法行不通，考虑下后两行函数
 要想让$flag不被替换，要么考虑等号后是否可以注释，要么考虑等号前--更改的不是$flag
 注释显然行不通，想办法既要通过前两行要求，也要更改到$flag名
-
 
 想到_GET超级全局变量；
 由于先判断POST 再判断GET
@@ -192,14 +181,8 @@ POST： _GET=fal(不是flag就可以）
 key=
 key=
 value变成$_GET=$fal(post的值)而后使得第四个语句不对$flag造成覆盖
-进而绕过过滤爆出最后flag
+进而绕过滤爆出最后flag
 
-
-参考文章(4条消息) php extract 变量覆盖,变量 覆盖漏洞----$$_Duke Yu的博客-CSDN博客）
-
-————————————————
-版权声明：本文为CSDN博主「DoubleLiii」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/DoubleLiii/article/details/127562691
 </code></pre>
 <p>详见: <a target="_blank" rel="noopener" href="https://blog.csdn.net/DoubleLiii/article/details/127562691?spm=1001.2014.3001.5502">Writing</a></p>
 
