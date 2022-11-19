@@ -140,7 +140,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/wp-web/" style="color: #ff7d73">
+                <a href="/tags/wp-web/" style="color: #03a9f4">
                     wp-web
                 </a>
             </span>
@@ -152,6 +152,18 @@
         <pre><code class="moectf">$ 变量覆盖：ezphp
 西电新生赛Moectf里面web方向的ezphp
 </code></pre>
+<p>西电新生赛Moectf里面web方向的ezphp</p>
+<span id="more"></span>
+<p>有点小提示（火力覆盖–覆盖）–考虑 web变量覆盖<br>打开页面 看到源码</p>
+<p>四行语句，执行完毕才可出flag</p>
+<p>发送GET或者POST请求，要求请求名（key）为flag否则返回$giveme</p>
+<p>第二行要求值不等于flag否则返回$getout<br>三四行对超级全局变量POST GET进行遍历赋值，我们发现输出的flag被自己提交的POST&#x2F;GET请求覆盖，导致输出的是自己输出的值，无法得到flag<br>ps：键和值的概念参考其他文章（(4条消息) php extract 变量覆盖,变量 覆盖漏洞—-$$_Duke Yu的博客-CSDN博客）</p>
+<p>首先想到更改一下getout值，让其在第二个函数报错带出flag<br>用bp抓个包</p>
+<p>发现$flag不会执行，当成字符串运行</p>
+<p>刚才变量代替方法行不通，考虑下后两行函数<br>要想让$flag不被替换，要么考虑等号后是否可以注释，要么考虑等号前–更改的不是$flag<br>注释显然行不通，想办法既要通过前两行要求，也要更改到$flag名</p>
+<p>想到_GET超级全局变量；<br>由于先判断POST 再判断GET<br>用POST更改GET，使第二个语句不生效<br>构造payload：<br>GET： ?flag&#x3D;1<br>POST： _GET&#x3D;fal(不是flag就可以）<br>相当于发送的post和get可以绕过第一条命令：post get至少一个key（等号前的）为flag<br>和第二条命令：二者值不能为flag<br>并且通过前两个语句后，post语句将<br>key&#x3D;<br>key&#x3D;<br>value变成$_GET&#x3D;$fal(post的值)而后使得第四个语句不对$flag造成覆盖<br>进而绕过过滤爆出最后flag</p>
+<p>参考文章(4条消息) php extract 变量覆盖,变量 覆盖漏洞—-$$_Duke Yu的博客-CSDN博客）</p>
+<p>————————————————<br>版权声明：本文为CSDN博主「DoubleLiii」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/DoubleLiii/article/details/127562691">https://blog.csdn.net/DoubleLiii/article/details/127562691</a></p>
 <p>详见: <a target="_blank" rel="noopener" href="https://blog.csdn.net/DoubleLiii/article/details/127562691?spm=1001.2014.3001.5502">Writing</a></p>
 
     </div>
