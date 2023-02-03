@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Ezphp-wp | DoubleLi's Blog</title><meta name="author" content="Double Li"><meta name="copyright" content="Double Li"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="$ 变量覆盖：ezphp 西电新生赛Moectf里面web方向的ezphp  西电新生赛Moectf里面web方向的ezphp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ezphp-wp">
+<meta property="og:url" content="http://example.com/post/54674177.html">
+<meta property="og:site_name" content="DoubleLi&#39;s Blog">
+<meta property="og:description" content="$ 变量覆盖：ezphp 西电新生赛Moectf里面web方向的ezphp  西电新生赛Moectf里面web方向的ezphp">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.imgdb.cn/item/637cb57516f2c2beb145a3f6.jpg">
+<meta property="article:published_time" content="2022-11-14T12:23:59.000Z">
+<meta property="article:modified_time" content="2023-01-11T12:14:11.072Z">
+<meta property="article:author" content="Double Li">
+<meta property="article:tag" content="wp-web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/637cb57516f2c2beb145a3f6.jpg"><link rel="shortcut icon" href="https://pic.imgdb.cn/item/6393106bb1fccdcd36e03717.gif"><link rel="canonical" href="http://example.com/post/54674177"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Ezphp-wp',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-01-11 20:14:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/6374f9aa16f2c2beb191be51.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags.html"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic.imgdb.cn/item/637cb57516f2c2beb145a3f6.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">DoubleLi's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags.html"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Ezphp-wp</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-11-14T12:23:59.000Z" title="Created 2022-11-14 20:23:59">2022-11-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-01-11T12:14:11.072Z" title="Updated 2023-01-11 20:14:11">2023-01-11</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Ezphp-wp"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><pre><code class="moectf">$ 变量覆盖：ezphp
+西电新生赛Moectf里面web方向的ezphp
+</code></pre>
+<p>西电新生赛Moectf里面web方向的ezphp</p>
+<span id="more"></span>
+<p>有点小提示（火力覆盖–覆盖）–考虑 web变量覆盖<br>打开页面 看到源码</p>
+<p>四行语句，执行完毕才可出flag</p>
+<p>发送GET或者POST请求，要求请求名（key）为flag否则返回$giveme</p>
+<p>第二行要求值不等于flag否则返回$getout<br>三四行对超级全局变量POST GET进行遍历赋值，我们发现输出的flag被自己提交的POST&#x2F;GET请求覆盖，导致输出的是自己输出的值，无法得到flag<br>ps：键和值的概念参考其他文章（(4条消息) php extract 变量覆盖,变量 覆盖漏洞—-$$_Duke Yu的博客-CSDN博客）</p>
+<p>首先想到更改一下getout值，让其在第二个函数报错带出flag<br>用bp抓个包</p>
+<p>发现$flag不会执行，当成字符串运行</p>
+<p>刚才变量代替方法行不通，考虑下后两行函数<br>要想让$flag不被替换，要么考虑等号后是否可以注释，要么考虑等号前–更改的不是$flag<br>注释显然行不通，想办法既要通过前两行要求，也要更改到$flag名</p>
+<p>想到_GET超级全局变量；<br>由于先判断POST 再判断GET<br>用POST更改GET，使第二个语句不生效<br>构造payload：<br>GET： ?flag&#x3D;1<br>POST： _GET&#x3D;fal(不是flag就可以）<br>相当于发送的post和get可以绕过第一条命令：post get至少一个key（等号前的）为flag<br>和第二条命令：二者值不能为flag<br>并且通过前两个语句后，post语句将<br>key&#x3D;<br>key&#x3D;<br>value变成$_GET&#x3D;$fal(post的值)而后使得第四个语句不对$flag造成覆盖<br>进而绕过过滤爆出最后flag</p>
+<p>参考文章(4条消息) php extract 变量覆盖,变量 覆盖漏洞—-$$_Duke Yu的博客-CSDN博客）</p>
+<p>————————————————<br>版权声明：本文为CSDN博主「DoubleLiii」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/DoubleLiii/article/details/127562691">https://blog.csdn.net/DoubleLiii/article/details/127562691</a></p>
+<p>详见: <a target="_blank" rel="noopener" href="https://blog.csdn.net/DoubleLiii/article/details/127562691?spm=1001.2014.3001.5502">Writing</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">Double Li</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/post/54674177.html">http://example.com/post/54674177.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/wp-web/">wp-web</a></div><div class="post_share"><div class="social-share" data-image="https://pic.imgdb.cn/item/637cb57516f2c2beb145a3f6.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/0.html"><img class="prev-cover" src="https://pic.imgdb.cn/item/637cb57516f2c2beb145a3f6.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Cyberspace Security</div></div></a></div><div class="next-post pull-right"><a href="/post/d8a4cff5.html"><img class="next-cover" src="https://pic.imgdb.cn/item/637cb57516f2c2beb145a3f6.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">我抬头看这天空蓝得深邃，缀着一只白雕~</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/post/3.html" title="CATcat_wp_web"><img class="cover" src="https://pic.imgdb.cn/item/637cb57516f2c2beb145a3f6.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-09</div><div class="title">CATcat_wp_web</div></div></a></div><div><a href="/post/1234.html" title="Hgame-WP"><img class="cover" src="https://pic.imgdb.cn/item/637cb57516f2c2beb145a3f6.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-11</div><div class="title">Hgame-WP</div></div></a></div><div><a href="/post/SQL.html" title="SQL注入合集"><img class="cover" src="https://pic.imgdb.cn/item/637cb57516f2c2beb145a3f6.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-31</div><div class="title">SQL注入合集</div></div></a></div><div><a href="/post/BUU-SOLVE.html" title="BUU_wp_web"><img class="cover" src="https://pic.imgdb.cn/item/637cb57516f2c2beb145a3f6.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-03</div><div class="title">BUU_wp_web</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://pic.imgdb.cn/item/6374f9aa16f2c2beb191be51.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Double Li</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/D0u6leL1"><i class="fab fa-github"></i><span>Follow Me（摸鱼）</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">纷杂的柳絮随风而起，却误认为自己掌握飞翔的能力</div><div class="xpand" style="height:200px;"></div></div><canvas class="illo" width="800" height="800" style="max-width: 200px; max-height: 200px; touch-action: none; width: 640px; height: 640px;"></canvas><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script id="rendered-js" src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
+margin: 0;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+canvas {
+display: block;
+margin: 0 auto;
+cursor: move;
+}</style><div class="sticky_layout"></div></div></main><footer id="footer" style="background-image: url('https://pic.imgdb.cn/item/637cb57516f2c2beb145a3f6.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Double Li</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
