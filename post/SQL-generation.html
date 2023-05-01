@@ -1,0 +1,184 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>SQL感悟 | DoubleLi's Blog</title><meta name="author" content="Double Li"><meta name="copyright" content="Double Li"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="学校网导实践期末作业选做一个sql复现，编写了sql注入的一道题，题目结合之前做题经历随便出的，payload很水，说不定sqlmap都能跑，但是在出题时遇到到了很多Docker镜像，php编写方面的问题，与平常做题的感受完全不同，从开发者的角度看待。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL感悟">
+<meta property="og:url" content="http://example.com/post/SQL-generation.html">
+<meta property="og:site_name" content="DoubleLi&#39;s Blog">
+<meta property="og:description" content="学校网导实践期末作业选做一个sql复现，编写了sql注入的一道题，题目结合之前做题经历随便出的，payload很水，说不定sqlmap都能跑，但是在出题时遇到到了很多Docker镜像，php编写方面的问题，与平常做题的感受完全不同，从开发者的角度看待。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic2.imgdb.cn/item/644f9b2a0d2dde57774d8ed6.png">
+<meta property="article:published_time" content="2023-05-01T10:58:01.000Z">
+<meta property="article:modified_time" content="2023-05-01T12:20:44.040Z">
+<meta property="article:author" content="Double Li">
+<meta property="article:tag" content="docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic2.imgdb.cn/item/644f9b2a0d2dde57774d8ed6.png"><link rel="shortcut icon" href="https://pic.imgdb.cn/item/6393106bb1fccdcd36e03717.gif"><link rel="canonical" href="http://example.com/post/SQL-generation"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SQL感悟',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-05-01 20:20:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/6374f9aa16f2c2beb191be51.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags.html"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic2.imgdb.cn/item/644f9b2a0d2dde57774d8ed6.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">DoubleLi's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags.html"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">SQL感悟</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-05-01T10:58:01.000Z" title="Created 2023-05-01 18:58:01">2023-05-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-05-01T12:20:44.040Z" title="Updated 2023-05-01 20:20:44">2023-05-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="SQL感悟"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>学校网导实践期末作业选做一个sql复现，编写了sql注入的一道题，题目结合之前做题经历随便出的，payload很水，说不定sqlmap都能跑，但是在出题时遇到到了很多Docker镜像，php编写方面的问题，与平常做题的感受完全不同，从开发者的角度看待。</p>
+<span id="more"></span>
+
+<img src='https://pic2.imgdb.cn/item/644f9cd30d2dde57774f61be.png' height=300px>
+先看看一道题组成
+
+<p>.db是数据库文件<br>.sql文件是生成的数据库，没什么用，填入数据自己手搓的<br>dockerfile里面 这里直接是FROM 了php:5.6-apache<br>后来发现也有ctftraining镜像可以直接调用，更方便些<br>dockercompose.yml里面配置了mysql和php的环境 看文档写就好</p>
+<p>Q1：环境配好后，随便写了个php扔里面，由于docker在虚拟机里面，无法直接架设到校园网里面供他人访问,配置ssh连接到vscode办公后，用自带的端口转发即可访问<br>cmd代码如下</p>
+<pre><code>&#123;
+    netsh interface portproxy add v4tov4 listenaddress=10.21....... listenport=80 connectaddress=192.168.43.129 connectport=80
+&#125;
+</code></pre>
+<p>供人访问的第一步就完成了</p>
+<p><code>编写主要代码</code><br>ps：实则这个阶段会比配置环境轻松很多</p>
+<p>前端向他人借了一个css，稍加修改<br><img src='https://pic2.imgdb.cn/item/644f9fee0d2dde5777520cb4.png' height=400px></p>
+<p>只有一个查询框，没有思考整体架构，打算写到一个网页里面</p>
+<p>下图右边有两个账户密码，刚开始没有想到权限这一层，后来更改一个新的用户，让他仅拥有可读权限，防止rm rf 删库，sql注入完成脱库即可<br><img src='https://pic2.imgdb.cn/item/644fa04a0d2dde57775254c2.png' height=400px><br>右侧是大体源码框架，连接上mysql数据库，经过waf过滤后，传值查询</p>
+<p>Q2：输出用的是js，编写覆盖输出后会导致f12 仍可见输出的内容，而且数据显示也很难看<br>    后面打算用两个页面，sql查询页面进行读取用户输入的数据，再将输入的id 用cookie或者session传入result页面</p>
+<img src='https://pic2.imgdb.cn/item/644fa1730d2dde5777535961.png' height =300px>
+期间读了不少博客学习，发现session传值传不过去，但并不打算用get+url拼接去传值，那不就和一个页面没区别了嘛
+后来发现只是一个小错误，session传值在php编写里面，不能把html代码写到php之前，否则不生效
+header(Location: ./)函数也一样，遇到了无法跳转的问题，也是因为前面不能有echo等函数
+<img src='https://pic2.imgdb.cn/item/644fa2bd0d2dde5777549c6e.png'>
+
+<blockquote>
+<p>在input界面只是提供参数，result界面加mysql读取结果并回显<br>共有三个结果 error occured  被waf过滤后mysql语句无法执行，方便burpsuite intro界面用fuzz测试出过blacklist&#x2F;<br>session occured 指session连接失败，测试用的<br>notfound&#x2F;查询语句有效（包括被waf后的语句）但是查询无结果</p>
+</blockquote>
+<p>出题从后端编写的角度感受sql注入，相比以前刷题学习各种绕过bypass，有了新的视角<br>学会用docker基本搭建一个php-mysql的网站，包括写一些前端什么的，还是很有收获</p>
+<p><code>最后payload(已经不重要了)</code></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">Double Li</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/post/SQL-generation.html">http://example.com/post/SQL-generation.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/docker/">docker</a></div><div class="post_share"><div class="social-share" data-image="https://pic2.imgdb.cn/item/644f9b2a0d2dde57774d8ed6.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/post/BUU-SOLVE.html"><img class="next-cover" src="https://pic.imgdb.cn/item/63dcd9a398e1d75234728b30.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">N1book web</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://pic.imgdb.cn/item/6374f9aa16f2c2beb191be51.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Double Li</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/D0u6leL1"><i class="fab fa-github"></i><span>Follow Me（摸鱼）</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">纷杂的柳絮随风而起，却误认为自己掌握飞翔的能力</div><div class="xpand" style="height:200px;"></div></div><canvas class="illo" width="800" height="800" style="max-width: 200px; max-height: 200px; touch-action: none; width: 640px; height: 640px;"></canvas><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script id="rendered-js" src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
+margin: 0;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+canvas {
+display: block;
+margin: 0 auto;
+cursor: move;
+}</style><div class="sticky_layout"></div></div></main><footer id="footer" style="background-image: url('https://pic2.imgdb.cn/item/644f9b2a0d2dde57774d8ed6.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Double Li</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
