@@ -7,7 +7,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://pic2.imgdb.cn/item/644f9b2a0d2dde57774d8ed6.png">
 <meta property="article:published_time" content="2023-05-01T10:58:01.000Z">
-<meta property="article:modified_time" content="2023-05-14T08:37:56.087Z">
+<meta property="article:modified_time" content="2023-05-14T08:58:44.724Z">
 <meta property="article:author" content="Double Li">
 <meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
@@ -53,7 +53,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-05-14 16:37:56'
+  postUpdate: '2023-05-14 16:58:44'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -142,7 +142,7 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/6374f9aa16f2c2beb191be51.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags.html"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic2.imgdb.cn/item/644f9b2a0d2dde57774d8ed6.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">DoubleLi's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags.html"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">SQL感悟</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-05-01T10:58:01.000Z" title="Created 2023-05-01 18:58:01">2023-05-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-05-14T08:37:56.087Z" title="Updated 2023-05-14 16:37:56">2023-05-14</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="SQL感悟"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>学校网导实践期末作业选做一个sql复现，编写了sql注入的一道题，题目结合之前做题经历随便出的，payload很水，说不定sqlmap都能跑（最后测试跑不了），但是在出题时遇到到了很多Docker镜像，php编写方面的问题，与平常做题的感受完全不同，从开发者的角度看待。</p>
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/6374f9aa16f2c2beb191be51.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags.html"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic2.imgdb.cn/item/644f9b2a0d2dde57774d8ed6.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">DoubleLi's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags.html"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">SQL感悟</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-05-01T10:58:01.000Z" title="Created 2023-05-01 18:58:01">2023-05-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-05-14T08:58:44.724Z" title="Updated 2023-05-14 16:58:44">2023-05-14</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="SQL感悟"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>学校网导实践期末作业选做一个sql复现，编写了sql注入的一道题，题目结合之前做题经历随便出的，payload很水，说不定sqlmap都能跑（最后测试跑不了），但是在出题时遇到到了很多Docker镜像，php编写方面的问题，与平常做题的感受完全不同，从开发者的角度看待。</p>
 <span id="more"></span>
 
 <img src='https://pic2.imgdb.cn/item/644f9cd30d2dde57774f61be.png' height=300px>
@@ -151,7 +151,7 @@
 <p>.db是数据库文件<br>.sql文件是生成的数据库，没什么用，填入数据自己手搓的<br>dockerfile里面 这里直接是FROM 了php:5.6-apache<br>后来发现也有ctftraining镜像可以直接调用，更方便些<br>dockercompose.yml里面配置了mysql和php的环境 看文档写就好</p>
 <p>Q1：环境配好后，随便写了个php扔里面，由于docker在虚拟机里面，无法直接架设到局域网里面供他人访问,配置ssh连接到vscode办公后，用自带的端口转发即可访问<br>cmd代码如下</p>
 <pre><code>&#123;
-    netsh interface portproxy add v4tov4 listenaddress=10.21....... listenport=80 connectaddress=192.168.43.129 connectport=80
+    netsh interface portproxy add v4tov4 listenaddress=....... listenport=80 connectaddress=192.168.43.129 connectport=80
 &#125;
 </code></pre>
 <p>供人访问的第一步就完成了</p>
