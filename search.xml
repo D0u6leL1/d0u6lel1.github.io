@@ -103,9 +103,7 @@
   <entry>
     <title>TSCTF-J2024 WP</title>
     <url>/post/tsctf-j2024.html</url>
-    <content><![CDATA[<h2 id="set-set-what-WEB-签到"><a href="#set-set-what-WEB-签到" class="headerlink" title="set set what(WEB 签到)"></a>set set what(WEB 签到)</h2><span id="more"></span>
-
-<p>解法1： 修改html前端拖动条范围上下界，直接拖</p>
+    <content><![CDATA[<h2 id="set-set-what-WEB-签到"><a href="#set-set-what-WEB-签到" class="headerlink" title="set set what(WEB 签到)"></a>set set what(WEB 签到)</h2><p>解法1： 修改html前端拖动条范围上下界，直接拖</p>
 <p>解法2： 看js里面最开始有个函数叫<code>setSliderValue</code> 控制台输入 setSliderValue(xxxxx)</p>
 <p>解法3： 也有逆向手喜欢看js混淆后的代码，找到qq号十六进制后的数据地方</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_0x167719 == <span class="number">0x993be543</span> &amp;&amp; <span class="title function_">alert</span>(_0x1d4b54);</span><br></pre></td></tr></table></figure>
@@ -166,10 +164,10 @@
     <title>[羊城杯] java </title>
     <url>/post/ycb-java.html</url>
     <content><![CDATA[<h2 id="2024YCB-java"><a href="#2024YCB-java" class="headerlink" title="2024YCB java"></a>2024YCB java</h2><p>除了这个链子还可以尝试JRMPClient去打二次反序列化绕过waf，（burp记得url编码，不然+认为空格返回error卡了这里）</p>
-<span id="more"></span>
 <p>两条链子加上传配合打jdbc 确实精彩</p>
-<p>找到string类的getgift  里面有invoke</p>
-<p>然后user&#x2F;ser里面还有readobj</p>
+<p>找到string类的getgift  里面有invoke  然后user&#x2F;ser里面还有readobj</p>
+<span id="more"></span>
+
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">ser</span><span class="params">(<span class="meta">@RequestParam(&quot;ser&quot;)</span> String ser)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException &#123;</span><br><span class="line">    <span class="type">byte</span>[] decode = Base64.getDecoder().decode(ser);</span><br><span class="line">    <span class="type">ByteArrayOutputStream</span> <span class="variable">byteArrayOutputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayOutputStream</span>();</span><br><span class="line">    byteArrayOutputStream.write(decode);</span><br><span class="line">    <span class="type">MyObjectInputStream</span> <span class="variable">objectInputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyObjectInputStream</span>(<span class="keyword">new</span> <span class="title class_">ByteArrayInputStream</span>(byteArrayOutputStream.toByteArray()));</span><br><span class="line">    objectInputStream.readObject();</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Success&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>所以Gadget找 readobj -&gt; tostring用<code>EventListenerList#readObject -&gt; toString</code><br>然后调 POJONode#toString -&gt; getter     打jdbc   </p>
